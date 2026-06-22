@@ -30,9 +30,7 @@
 </template>
 
 <script>
-import { DependentFormField, mapProps } from "laravel-nova";
-
-import { Errors } from "form-backend-validation";
+import { DependentFormField, Errors, mapProps } from "laravel-nova";
 
 import each from "lodash/each";
 import isEmpty from "lodash/isEmpty";
