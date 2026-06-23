@@ -80,7 +80,7 @@ class DependablePanel extends Field {
      * @param  string|null  $attribute
      * @return void
      */
-    public function resolve($resource, $attribute = null) {
+    public function resolve($resource, ?string $attribute = null): void {
         $this->resource = $resource;
 
         foreach ($this->fields as $field) {
@@ -88,7 +88,7 @@ class DependablePanel extends Field {
         }
     }
 
-    public function getUpdateRules(NovaRequest $request) {
+    public function getUpdateRules(NovaRequest $request): array {
         if ($request instanceof ScopedRequest && class_exists(FlexibleAttribute::class)) {
             $rules = [];
             foreach ($this->fields as $field) {
@@ -127,7 +127,7 @@ class DependablePanel extends Field {
         return $rules;
     }
 
-    public function getCreationRules(NovaRequest $request) {
+    public function getCreationRules(NovaRequest $request): array {
         if ($request instanceof ScopedRequest && class_exists(FlexibleAttribute::class)) {
             $rules = [];
             foreach ($this->fields as $field) {
@@ -195,7 +195,7 @@ class DependablePanel extends Field {
         return $this;
     }
 
-    public function getValidationAttributeNames(NovaRequest $request) {
+    public function getValidationAttributeNames(NovaRequest $request): array {
         $this->applyDependsOn($request);
         return array_merge(
             [$this->validationKey() => $this->name],
